@@ -1,0 +1,22 @@
+/* ============================================================
+   Sacolas CRM — Webfonts
+   Geist (variable) for UI text, Geist Mono (variable) for numerals
+   in tables/codes. Two weights only are USED in the system: 400 & 500.
+   Never 700 — it reads heavy in the corporate/SaaS register.
+   ============================================================ */
+
+@font-face {
+  font-family: "Geist";
+  src: url("../assets/fonts/GeistVF.woff") format("woff");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("../assets/fonts/GeistMonoVF.woff") format("woff");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}

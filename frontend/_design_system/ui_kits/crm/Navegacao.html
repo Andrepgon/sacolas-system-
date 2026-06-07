@@ -1,0 +1,58 @@
+<!-- @dsCard group="CRM app" viewport="1180x620" name="Navegação — sidebar & tab bar" subtitle="Desktop rail + mobile bottom tabs, interactive" -->
+<!-- @startingPoint section="Navigation" subtitle="Primary nav — desktop sidebar + mobile bottom tab bar" viewport="1180x620" -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Navegação · Sacolas CRM</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="kit.css">
+<style>
+  body { padding: 32px; }
+  .nav-demo { display: flex; gap: 48px; align-items: flex-start; flex-wrap: wrap; }
+  .demo-block__label { font-family: var(--font-mono); font-size: 11px; color: var(--text-hint); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 12px; }
+  .rail-frame { height: 480px; border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .phone { width: 300px; border: 1px solid var(--border-subtle); border-radius: 28px; overflow: hidden; background: var(--surface-page); box-shadow: var(--shadow-md); }
+  .phone__screen { height: 440px; display: flex; flex-direction: column; }
+  .phone__top { height: 30px; display: flex; align-items: center; justify-content: center; }
+  .phone__notch { width: 90px; height: 6px; border-radius: var(--radius-full); background: var(--slate-200); }
+  .phone__body { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: var(--text-hint); font-size: 13px; }
+  .phone__body b { color: var(--text-secondary); font-weight: var(--weight-medium); font-size: 15px; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="lib.jsx"></script>
+<script type="text/babel">
+  const LABELS = { overview: 'Visão geral', contacts: 'Clientes', orders: 'Pedidos', top: 'Melhores clientes' }
+  function Demo() {
+    const [active, setActive] = React.useState('overview')
+    return (
+      <div className="nav-demo">
+        <div className="demo-block">
+          <div className="demo-block__label">Desktop · sidebar fixa 220px</div>
+          <div className="rail-frame">
+            <Sidebar active={active} onNavigate={setActive} onNew={() => alert('+ Novo')} />
+          </div>
+        </div>
+        <div className="demo-block">
+          <div className="demo-block__label">Mobile · bottom tab bar</div>
+          <div className="phone">
+            <div className="phone__screen">
+              <div className="phone__top"><span className="phone__notch" /></div>
+              <div className="phone__body"><b>{LABELS[active]}</b><span>conteúdo da tela</span></div>
+              <BottomTabBar active={active} onNavigate={setActive} onNew={() => alert('+ Novo')} />
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo />)
+</script>
+</body>
+</html>

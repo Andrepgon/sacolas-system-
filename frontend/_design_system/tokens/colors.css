@@ -1,0 +1,100 @@
+/* ============================================================
+   Sacolas CRM — Color tokens
+   Direction: neutral slate base + ONE kraft-amber accent, used with
+   parcimony (primary button + active nav only). Color encodes meaning,
+   never decoration.
+
+   Two layers:
+   1. Raw palette + shadcn HSL triplets (parity with app/globals.css).
+   2. Semantic, ready-to-use aliases — full color values you can drop
+      straight into `color:` / `background:` (no hsl() wrapper needed).
+   The golden rule: components reference SEMANTIC tokens, never raw hex.
+   ============================================================ */
+
+:root {
+  /* ---- shadcn HSL triplets (space-separated, no commas) ----------
+     All are color tokens. */
+  --background: 210 20% 98%; /* @kind color */
+  --foreground: 222 47% 11%; /* @kind color */
+  --card: 0 0% 100%; /* @kind color */
+  --card-foreground: 222 47% 11%; /* @kind color */
+  --popover: 0 0% 100%; /* @kind color */
+  --popover-foreground: 222 47% 11%; /* @kind color */
+
+  --primary: 35 78% 41%; /* @kind color */
+  --primary-foreground: 0 0% 100%; /* @kind color */
+
+  --secondary: 210 40% 96%; /* @kind color */
+  --secondary-foreground: 222 47% 11%; /* @kind color */
+  --muted: 210 40% 96%; /* @kind color */
+  --muted-foreground: 215 16% 47%; /* @kind color */
+  --accent: 210 40% 96%; /* @kind color */
+  --accent-foreground: 222 47% 11%; /* @kind color */
+
+  --border: 214 32% 91%; /* @kind color */
+  --input: 214 32% 91%; /* @kind color */
+  --ring: 35 78% 41%; /* @kind color */
+
+  --success: 160 84% 39%; /* @kind color */
+  --success-foreground: 0 0% 100%; /* @kind color */
+  --warning: 35 78% 41%; /* @kind color */
+  --warning-foreground: 0 0% 100%; /* @kind color */
+  --destructive: 0 72% 51%; /* @kind color */
+  --destructive-foreground: 0 0% 100%; /* @kind color */
+  --info: 211 80% 43%; /* @kind color */
+
+  /* ---- Raw slate ramp (reference) -------------------------------- */
+  --slate-50:  #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-900: #0f172a;
+
+  /* ---- Kraft-amber accent ramp ----------------------------------- */
+  --amber-50:  #fbf3e6;   /* tint for subtle amber surfaces           */
+  --amber-100: #f3e0c2;
+  --amber-600: #ba7517;   /* THE accent — primary button, active nav  */
+  --amber-700: #9a6010;   /* primary hover                            */
+
+  /* ---- Semantic aliases (full colors, ready to use) -------------- */
+  --surface-page:    #f8fafc;   /* page background (slate-50)          */
+  --surface-card:    #ffffff;   /* cards / panels                      */
+  --surface-muted:   #f1f5f9;   /* metric cards, inset rows (slate-100)*/
+  --surface-hover:   #f1f5f9;   /* row / item hover                    */
+
+  --text-primary:    #0f172a;   /* slate-900 — headings & values       */
+  --text-secondary:  #64748b;   /* slate-500 — labels & body-secondary */
+  --text-hint:       #94a3b8;   /* slate-400 — captions, placeholders  */
+  --text-on-accent:  #ffffff;
+
+  --border-subtle:   #e2e8f0;   /* slate-200 — the default hairline    */
+
+  --accent:          #ba7517;   /* alias kept full-color for cards     */
+  --accent-hover:    #9a6010;
+  --accent-tint:     #fbf3e6;   /* amber-50 — soft accent backgrounds  */
+
+  --positive:        #059669;   /* emerald-600 */
+  --positive-tint:   #ecfdf5;   /* emerald-50  */
+  --positive-text:   #047857;   /* emerald-700 — text on tint          */
+  --negative:        #dc2626;   /* red-600     */
+  --negative-tint:   #fef2f2;   /* red-50      */
+  --info-color:      #1d6fc7;   /* blue-600    */
+  --info-tint:       #eff6ff;   /* blue-50     */
+
+  /* ---- Chart palette — monochrome blue, corporate & cohesive ----- */
+  /* Never semantic color in charts. Bars default to --chart-bar; the
+     peak month uses --chart-bar-peak. Segments step through the ramp;
+     the 5th (grey) is reserved for "other". */
+  --chart-bar:       #378add;
+  --chart-bar-peak:  #185fa5;
+  --chart-seg-1:     #185fa5;
+  --chart-seg-2:     #378add;
+  --chart-seg-3:     #85b7eb;
+  --chart-seg-4:     #b5d4f4;
+  --chart-seg-other: #d3d1c7;   /* warm grey — "other" / kraft nod     */
+  --chart-grid:      #e2e8f0;   /* slate-200 axis & gridlines          */
+}

@@ -1,0 +1,33 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Status badges — subtle tints" subtitle="Never loud solids. Tint background + readable text." -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 24px; display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 10px; border-radius: var(--radius-full); font-size: 12px; font-weight: var(--weight-medium); }
+  .dot { width: 6px; height: 6px; border-radius: var(--radius-full); }
+  .grp { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+  .cap { font-size: 11px; color: var(--text-hint); font-family: var(--font-mono); }
+</style>
+</head>
+<body>
+  <div class="grp">
+    <span class="badge" style="background:var(--positive-tint); color:var(--positive-text)"><span class="dot" style="background:var(--positive)"></span>Cliente</span>
+    <span class="cap">customer</span>
+  </div>
+  <div class="grp">
+    <span class="badge" style="background:var(--slate-100); color:var(--slate-600)"><span class="dot" style="background:var(--slate-400)"></span>Lead</span>
+    <span class="cap">lead</span>
+  </div>
+  <div class="grp">
+    <span class="badge" style="background:var(--slate-100); color:var(--slate-400)"><span class="dot" style="background:var(--slate-300)"></span>Inativo</span>
+    <span class="cap">inactive / churned</span>
+  </div>
+  <div class="grp">
+    <span class="badge" style="background:var(--info-tint); color:var(--info-color)"><span class="dot" style="background:var(--info-color)"></span>Aguardando vetor</span>
+    <span class="cap">order · em produção</span>
+  </div>
+</body>
+</html>

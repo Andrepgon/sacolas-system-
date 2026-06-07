@@ -1,0 +1,21 @@
+<!-- @dsCard group="Spacing" viewport="700x150" name="Corner radius" subtitle="8px (lg) is the workhorse for cards. Full-round for avatars & pills." -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 22px; display: flex; gap: 20px; align-items: flex-end; }
+  .col { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .box { width: 64px; height: 56px; background: var(--surface-card); border: 1px solid var(--border-subtle); }
+  .tag { font-family: var(--font-mono); font-size: 10px; color: var(--text-hint); }
+</style>
+</head>
+<body>
+  <div class="col"><div class="box" style="border-radius:var(--radius-sm)"></div><span class="tag">sm · 4 · badge</span></div>
+  <div class="col"><div class="box" style="border-radius:var(--radius-md)"></div><span class="tag">md · 6 · button</span></div>
+  <div class="col"><div class="box" style="border-radius:var(--radius-lg)"></div><span class="tag">lg · 8 · card</span></div>
+  <div class="col"><div class="box" style="border-radius:var(--radius-xl)"></div><span class="tag">xl · 12 · dialog</span></div>
+  <div class="col"><div class="box" style="width:56px;border-radius:var(--radius-full)"></div><span class="tag">full · avatar</span></div>
+</body>
+</html>

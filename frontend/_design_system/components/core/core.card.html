@@ -1,0 +1,74 @@
+<!-- @dsCard group="Components" viewport="700x440" name="Core — buttons, badges, fields" subtitle="Button · Badge · Avatar · Input · Select · Card" -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { padding: 22px; }
+  .group { margin-bottom: 22px; }
+  .lbl { font-family: var(--font-mono); font-size: 10px; color: var(--text-hint); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px; }
+  .rowf { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .col { display: flex; flex-direction: column; gap: 8px; max-width: 280px; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  const { Button, Badge, Avatar, Input, Select } = window.SacolasCRMDesignSystem_553a9b
+  function Demo() {
+    return (
+      <>
+        <div className="group">
+          <div className="lbl">Button</div>
+          <div className="rowf">
+            <Button variant="primary">Salvar</Button>
+            <Button variant="secondary">Cancelar</Button>
+            <Button variant="outline">Filtrar</Button>
+            <Button variant="ghost">Trocar</Button>
+            <Button variant="destructive">Excluir</Button>
+            <Button variant="primary" size="sm">+ Novo</Button>
+            <Button variant="primary" disabled>Salvando…</Button>
+          </div>
+        </div>
+        <div className="group">
+          <div className="lbl">Badge</div>
+          <div className="rowf">
+            <Badge variant="customer" dot>Cliente</Badge>
+            <Badge variant="lead" dot>Lead</Badge>
+            <Badge variant="inactive" dot>Inativo</Badge>
+            <Badge variant="info" dot>Aguardando vetor</Badge>
+            <Badge variant="warning" dot>Em risco</Badge>
+            <Badge variant="outline">papelaria</Badge>
+          </div>
+        </div>
+        <div className="group">
+          <div className="lbl">Avatar</div>
+          <div className="rowf">
+            <Avatar name="Maria Souza" size="lg" />
+            <Avatar name="Padaria Pão Quente" />
+            <Avatar name="João" size="sm" />
+          </div>
+        </div>
+        <div className="group">
+          <div className="lbl">Input · Select</div>
+          <div className="col">
+            <Input placeholder="Buscar por nome ou telefone…" />
+            <Select placeholder="Todos os status" options={[
+              {value:'lead',label:'Leads'},
+              {value:'customer',label:'Clientes'},
+              {value:'inactive',label:'Inativos'},
+            ]} />
+          </div>
+        </div>
+      </>
+    )
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo />)
+</script>
+</body>
+</html>

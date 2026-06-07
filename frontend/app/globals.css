@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 35 78% 41%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 47% 11%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 35 78% 41%;
+
+    --success: 160 84% 39%;
+    --success-foreground: 0 0% 100%;
+    --warning: 35 78% 41%;
+    --warning-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --info: 211 80% 43%;
+
+    --radius: 0.5rem;
+
+    --slate-50: #f8fafc;
+    --slate-100: #f1f5f9;
+    --slate-200: #e2e8f0;
+    --slate-300: #cbd5e1;
+    --slate-400: #94a3b8;
+    --slate-500: #64748b;
+    --slate-600: #475569;
+    --slate-700: #334155;
+    --slate-900: #0f172a;
+
+    --amber-50: #fbf3e6;
+    --amber-100: #f3e0c2;
+    --amber-600: #ba7517;
+    --amber-700: #9a6010;
+
+    --surface-page: #f8fafc;
+    --surface-card: #ffffff;
+    --surface-muted: #f1f5f9;
+    --surface-hover: #f1f5f9;
+
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    --text-hint: #94a3b8;
+    --text-on-accent: #ffffff;
+
+    --border-subtle: #e2e8f0;
+
+    --accent-hover: #9a6010;
+    --accent-tint: #fbf3e6;
+
+    --positive: #059669;
+    --positive-tint: #ecfdf5;
+    --positive-text: #047857;
+    --negative: #dc2626;
+    --negative-tint: #fef2f2;
+    --info-color: #1d6fc7;
+    --info-tint: #eff6ff;
+
+    --chart-bar: #378add;
+    --chart-bar-peak: #185fa5;
+    --chart-seg-1: #185fa5;
+    --chart-seg-2: #378add;
+    --chart-seg-3: #85b7eb;
+    --chart-seg-4: #b5d4f4;
+    --chart-seg-other: #d3d1c7;
+    --chart-grid: #e2e8f0;
+
+    --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
+      "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", "Cascadia Code",
+      Menlo, Consolas, monospace;
+
+    --weight-regular: 400;
+    --weight-medium: 500;
+
+    --text-page-size: 1.25rem;
+    --text-page-lh: 1.6rem;
+    --text-kpi-size: 1.5rem;
+    --text-kpi-lh: 1.875rem;
+    --text-section-size: 1rem;
+    --text-section-lh: 1.4rem;
+    --text-card-size: 0.875rem;
+    --text-card-lh: 1.25rem;
+    --text-body-size: 0.875rem;
+    --text-body-lh: 1.35rem;
+    --text-label-size: 0.8125rem;
+    --text-label-lh: 1.1rem;
+    --text-hint-size: 0.75rem;
+    --text-hint-lh: 1rem;
+
+    --tracking-tight: -0.01em;
+    --tracking-normal: 0;
+
+    --space-0: 0;
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+
+    --radius-sm: 0.25rem;
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-full: 9999px;
+
+    --border-width: 1px;
+
+    --shadow-xs: 0 1px 2px 0 rgb(15 23 42 / 0.04);
+    --shadow-sm: 0 1px 3px 0 rgb(15 23 42 / 0.06), 0 1px 2px -1px rgb(15 23 42 / 0.06);
+    --shadow-md: 0 4px 12px -2px rgb(15 23 42 / 0.08), 0 2px 6px -2px rgb(15 23 42 / 0.05);
+    --shadow-lg: 0 12px 32px -8px rgb(15 23 42 / 0.14);
+    --shadow-focus: 0 0 0 3px rgb(186 117 23 / 0.30);
+
+    --sidebar-width: 220px;
+    --tabbar-height: 56px;
+    --content-max: 1100px;
+    --topbar-height: 56px;
+
+    --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+    --duration-fast: 120ms;
+    --duration-base: 180ms;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv11", "ss01";
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+  .mono {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+  ::selection {
+    background: var(--accent-tint);
+    color: var(--accent-hover);
+  }
+}

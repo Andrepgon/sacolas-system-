@@ -1,0 +1,34 @@
+<!-- @dsCard group="Colors" viewport="700x170" name="Chart palette — monochrome blue" subtitle="Cohesive blue ramp + warm grey for 'other'. Never rainbow." -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 20px; }
+  .bars { display: flex; align-items: flex-end; gap: 10px; height: 84px; }
+  .bar { flex: 1; border-radius: 3px 3px 0 0; }
+  .legend { display: flex; gap: 14px; margin-top: 14px; flex-wrap: wrap; }
+  .item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-secondary); }
+  .key { width: 12px; height: 12px; border-radius: 3px; }
+  .hex { font-family: var(--font-mono); color: var(--text-hint); }
+</style>
+</head>
+<body>
+  <div class="bars">
+    <div class="bar" style="height:48%; background:var(--chart-seg-3)"></div>
+    <div class="bar" style="height:62%; background:var(--chart-bar)"></div>
+    <div class="bar" style="height:40%; background:var(--chart-seg-3)"></div>
+    <div class="bar" style="height:100%; background:var(--chart-bar-peak)"></div>
+    <div class="bar" style="height:72%; background:var(--chart-bar)"></div>
+    <div class="bar" style="height:55%; background:var(--chart-seg-3)"></div>
+  </div>
+  <div class="legend">
+    <div class="item"><span class="key" style="background:var(--chart-seg-1)"></span><span class="hex">#185FA5</span></div>
+    <div class="item"><span class="key" style="background:var(--chart-seg-2)"></span><span class="hex">#378ADD</span></div>
+    <div class="item"><span class="key" style="background:var(--chart-seg-3)"></span><span class="hex">#85B7EB</span></div>
+    <div class="item"><span class="key" style="background:var(--chart-seg-4)"></span><span class="hex">#B5D4F4</span></div>
+    <div class="item"><span class="key" style="background:var(--chart-seg-other)"></span><span class="hex">#D3D1C7 · outro</span></div>
+  </div>
+</body>
+</html>

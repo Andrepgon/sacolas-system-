@@ -1,0 +1,27 @@
+<!-- @dsCard group="Spacing" viewport="700x220" name="Card anatomy in use" subtitle="White surface, slate-200 hairline, radius-lg, 24px padding." -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 20px; }
+  .card { background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-6); max-width: 320px; }
+  .title { font-size: var(--text-card-size); font-weight: var(--weight-medium); color: var(--text-primary); }
+  .metric { display: flex; align-items: baseline; gap: 8px; margin-top: var(--space-3); }
+  .val { font-size: var(--text-kpi-size); font-weight: var(--weight-medium); letter-spacing: var(--tracking-tight); }
+  .delta { font-size: 13px; font-weight: var(--weight-medium); color: var(--positive); }
+  .sub { font-size: var(--text-hint-size); color: var(--text-hint); margin-top: var(--space-2); }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="title">Receita do mês</div>
+    <div class="metric">
+      <span class="val mono">R$ 12.480</span>
+      <span class="delta">▲ 18%</span>
+    </div>
+    <div class="sub">Ticket médio R$ 312 · vs. mês anterior</div>
+  </div>
+</body>
+</html>

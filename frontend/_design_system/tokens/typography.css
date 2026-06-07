@@ -1,0 +1,40 @@
+/* ============================================================
+   Sacolas CRM — Typography tokens
+   Geist everywhere; Geist Mono for tabular numerals (LTV, totals, IDs).
+   Two weights ONLY: 400 (regular) and 500 (medium). Never 700.
+   Sentence case always — no ALL-CAPS titles.
+   Type scale is tight and functional, sized for a data app read on a
+   phone first.
+   ============================================================ */
+
+:root {
+  /* ---- Families --------------------------------------------------- */
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", "Cascadia Code",
+    Menlo, Consolas, monospace;
+
+  /* ---- Weights (the only two allowed) ----------------------------- */
+  --weight-regular: 400;
+  --weight-medium: 500;
+
+  /* ---- Type scale (size / line-height) ---------------------------- */
+  --text-page-size: 1.25rem;     /* 20px — page title          (500) */
+  --text-page-lh: 1.6rem;
+  --text-kpi-size: 1.5rem;       /* 24px — KPI / metric value  (500) */
+  --text-kpi-lh: 1.875rem;
+  --text-section-size: 1rem;     /* 16px — section heading     (500) */
+  --text-section-lh: 1.4rem;
+  --text-card-size: 0.875rem;    /* 14px — card title          (500) */
+  --text-card-lh: 1.25rem;
+  --text-body-size: 0.875rem;    /* 14px — body                (400) */
+  --text-body-lh: 1.35rem;
+  --text-label-size: 0.8125rem;  /* 13px — form labels         (500) */
+  --text-label-lh: 1.1rem;
+  --text-hint-size: 0.75rem;     /* 12px — hints, captions     (400) */
+  --text-hint-lh: 1rem;
+
+  /* ---- Tracking --------------------------------------------------- */
+  --tracking-tight: -0.01em;     /* page titles & KPI numbers        */
+  --tracking-normal: 0;
+}
