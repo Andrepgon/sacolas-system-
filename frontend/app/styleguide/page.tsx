@@ -647,7 +647,7 @@ export default function StyleguidePage() {
                   </p>
                   <div className="flex flex-wrap gap-2">
                     <StatusBadge status="quote" />
-                    <StatusBadge status="confirmed" />
+                    <StatusBadge status="signal_paid" />
                     <StatusBadge status="vector_pending" />
                     <StatusBadge status="factory_pending" />
                     <StatusBadge status="printing" />

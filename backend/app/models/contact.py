@@ -46,6 +46,7 @@ class ContactUpdate(BaseModel):
     tags: Optional[list[str]] = None
     has_vector_logo: Optional[bool] = None
     notes: Optional[str] = None
+    opt_out: Optional[bool] = None
 
 
 class Contact(ContactBase):
@@ -53,6 +54,9 @@ class Contact(ContactBase):
     first_order_at: Optional[datetime] = None
     last_order_at: Optional[datetime] = None
     last_contact_at: Optional[datetime] = None
+    last_campaign_at: Optional[datetime] = None
+    opt_out: bool = False
+    opt_out_at: Optional[datetime] = None
     total_orders: int = 0
     lifetime_value: float = 0
     created_at: datetime

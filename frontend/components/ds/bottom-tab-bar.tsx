@@ -1,5 +1,13 @@
 import * as React from 'react'
-import { Home, Users, Package, Trophy, Plus, type LucideIcon } from 'lucide-react'
+import {
+  Home,
+  Users,
+  Package,
+  Trophy,
+  Plus,
+  Megaphone,
+  type LucideIcon,
+} from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { IconName, NavItem } from './sidebar'
 
@@ -9,6 +17,7 @@ const iconMap: Record<IconName, LucideIcon> = {
   package: Package,
   trophy: Trophy,
   plus: Plus,
+  megaphone: Megaphone,
 }
 
 export interface BottomTabItem extends NavItem {

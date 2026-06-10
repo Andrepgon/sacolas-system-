@@ -4,7 +4,7 @@ from uuid import UUID
 from pydantic import BaseModel, Field
 
 ORDER_STATUSES = [
-    "quote", "confirmed", "vector_pending", "factory_pending",
+    "quote", "signal_paid", "vector_pending", "factory_pending",
     "printing", "ready_to_deliver", "delivered", "paid", "cancelled"
 ]
 
@@ -17,8 +17,9 @@ class OrderBase(BaseModel):
     unit_price: Optional[float] = None
     total: float = Field(ge=0)
     paid_amount: float = 0
-    status: str = "quote"
+    status: str = "signal_paid"
     delivery_address: Optional[str] = None
+    delivery_address_id: Optional[UUID] = None
     notes: Optional[str] = None
 
 
@@ -35,6 +36,7 @@ class OrderUpdate(BaseModel):
     paid_amount: Optional[float] = None
     status: Optional[str] = None
     delivery_address: Optional[str] = None
+    delivery_address_id: Optional[UUID] = None
     notes: Optional[str] = None
     delivered_at: Optional[datetime] = None
     paid_at: Optional[datetime] = None

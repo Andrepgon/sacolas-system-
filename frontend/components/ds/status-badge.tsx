@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
 export type ContactStatus = 'lead' | 'customer' | 'inactive' | 'churned'
 export type OrderStatus =
   | 'quote'
-  | 'confirmed'
+  | 'signal_paid'
   | 'vector_pending'
   | 'factory_pending'
   | 'printing'
@@ -12,6 +12,12 @@ export type OrderStatus =
   | 'delivered'
   | 'paid'
   | 'cancelled'
+export type CampaignStatusKey =
+  | 'draft'
+  | 'ready'
+  | 'sending'
+  | 'done'
+  | 'archived'
 
 type Tone = 'positive' | 'info' | 'amber' | 'neutral' | 'faint' | 'danger'
 
@@ -50,7 +56,7 @@ const MAP: Record<string, Entry> = {
   inactive: { tone: 'faint', label: 'Inativo' },
   churned: { tone: 'faint', label: 'Perdido' },
   quote: { tone: 'neutral', label: 'Orçamento' },
-  confirmed: { tone: 'info', label: 'Confirmado' },
+  signal_paid: { tone: 'info', label: 'Sinal pago' },
   vector_pending: { tone: 'info', label: 'Aguardando vetor' },
   factory_pending: { tone: 'info', label: 'Na fábrica' },
   printing: { tone: 'amber', label: 'Em impressão' },
@@ -58,10 +64,15 @@ const MAP: Record<string, Entry> = {
   delivered: { tone: 'positive', label: 'Entregue' },
   paid: { tone: 'positive', label: 'Pago' },
   cancelled: { tone: 'danger', label: 'Cancelado' },
+  draft: { tone: 'neutral', label: 'Rascunho' },
+  ready: { tone: 'info', label: 'Pronta' },
+  sending: { tone: 'amber', label: 'Em disparo' },
+  done: { tone: 'positive', label: 'Concluída' },
+  archived: { tone: 'faint', label: 'Arquivada' },
 }
 
 export interface StatusBadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
-  status: ContactStatus | OrderStatus | string
+  status: ContactStatus | OrderStatus | CampaignStatusKey | string
   label?: React.ReactNode
   dot?: boolean
 }

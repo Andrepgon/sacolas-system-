@@ -12,6 +12,7 @@ const NAV_ITEMS: NavItem[] = [
   { key: 'overview', label: 'Visão geral', icon: 'home' },
   { key: 'contacts', label: 'Clientes', icon: 'users' },
   { key: 'orders', label: 'Pedidos', icon: 'package' },
+  { key: 'campanhas', label: 'Campanhas', icon: 'megaphone' },
   { key: 'top', label: 'Melhores clientes', icon: 'trophy' },
 ]
 
@@ -19,8 +20,8 @@ const TAB_ITEMS: BottomTabItem[] = [
   { key: 'overview', label: 'Visão', icon: 'home' },
   { key: 'contacts', label: 'Clientes', icon: 'users' },
   { key: 'new', label: 'Novo', icon: 'plus', isNew: true },
+  { key: 'campanhas', label: 'Campanhas', icon: 'megaphone' },
   { key: 'orders', label: 'Pedidos', icon: 'package' },
-  { key: 'top', label: 'Top', icon: 'trophy' },
 ]
 
 const ROUTES: Record<string, string> = {
@@ -28,6 +29,7 @@ const ROUTES: Record<string, string> = {
   contacts: '/contacts',
   orders: '/orders',
   top: '/clientes/top',
+  campanhas: '/campanhas',
   new: '/contacts/new',
 }
 
@@ -35,6 +37,7 @@ function activeKey(pathname: string): string {
   if (pathname === '/') return 'overview'
   if (pathname.startsWith('/contacts')) return 'contacts'
   if (pathname.startsWith('/orders')) return 'orders'
+  if (pathname.startsWith('/campanhas')) return 'campanhas'
   if (pathname.startsWith('/clientes/top')) return 'top'
   if (pathname.startsWith('/views')) return 'overview'
   return ''

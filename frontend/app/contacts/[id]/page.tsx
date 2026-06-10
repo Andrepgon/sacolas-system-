@@ -16,6 +16,9 @@ import {
 } from '@/components/ds'
 import { format, formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
+import { ContactImagesSection } from './_components/contact-images-section'
+import { ContactAddressesSection } from './_components/contact-addresses-section'
+import { OptOutToggle } from './_components/opt-out-toggle'
 
 function formatBRL(v: number): string {
   return `R$ ${v.toLocaleString('pt-BR', { maximumFractionDigits: 0 })}`
@@ -193,6 +196,18 @@ export default function ContactDetailPage() {
             ))}
           </div>
         )}
+      </Card>
+
+      <Card title="Endereços" padded={false} className="mt-4">
+        <ContactAddressesSection contactId={contact.id} />
+      </Card>
+
+      <Card title="Imagens" padded={false} className="mt-4">
+        <ContactImagesSection contactId={contact.id} />
+      </Card>
+
+      <Card title="Campanhas" padded={false} className="mt-4">
+        <OptOutToggle contact={contact} onChange={setContact} />
       </Card>
 
       {contact.notes ? (

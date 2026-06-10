@@ -8,7 +8,7 @@ import { z } from 'zod'
 import axios from 'axios'
 import { Search } from 'lucide-react'
 import { api } from '@/lib/api'
-import type { Contact, Order } from '@/lib/types'
+import type { Contact, ContactAddress, Order } from '@/lib/types'
 import {
   Avatar,
   Button,
@@ -20,7 +20,7 @@ import {
 
 const ORDER_STATUS_OPTIONS = [
   { value: 'quote', label: 'Orçamento' },
-  { value: 'confirmed', label: 'Confirmado' },
+  { value: 'signal_paid', label: 'Sinal pago' },
   { value: 'vector_pending', label: 'Aguardando vetor' },
   { value: 'factory_pending', label: 'Na fábrica' },
   { value: 'printing', label: 'Em impressão' },
@@ -32,7 +32,7 @@ const ORDER_STATUS_OPTIONS = [
 
 const ORDER_STATUSES = [
   'quote',
-  'confirmed',
+  'signal_paid',
   'vector_pending',
   'factory_pending',
   'printing',
@@ -50,8 +50,11 @@ const schema = z.object({
   total: z.number().nonnegative('Obrigatório'),
   status: z.enum(ORDER_STATUSES),
   delivery_address: z.string().optional(),
+  delivery_address_id: z.string().uuid().optional().or(z.literal('')),
   notes: z.string().optional(),
 })
+
+const CUSTOM_ADDRESS_VALUE = '__custom__'
 
 type FormData = z.infer<typeof schema>
 
@@ -79,6 +82,8 @@ function NewOrderForm() {
   const [selectedContact, setSelectedContact] = useState<Contact | null>(null)
   const [open, setOpen] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
+  const [addresses, setAddresses] = useState<ContactAddress[]>([])
+  const [addressMode, setAddressMode] = useState<string>('') // address id, CUSTOM_ADDRESS_VALUE, or ''
 
   const {
     register,
@@ -90,7 +95,7 @@ function NewOrderForm() {
     resolver: zodResolver(schema),
     defaultValues: {
       contact_id: prefillContactId,
-      status: 'confirmed',
+      status: 'signal_paid',
     },
   })
 
@@ -103,6 +108,54 @@ function NewOrderForm() {
         /* ignore — usuário escolhe manualmente */
       })
   }, [prefillContactId])
+
+  useEffect(() => {
+    if (!selectedContact) {
+      setAddresses([])
+      setAddressMode('')
+      return
+    }
+    let cancelled = false
+    void api
+      .get<ContactAddress[]>(`/contacts/${selectedContact.id}/addresses`)
+      .then(({ data }) => {
+        if (cancelled) return
+        setAddresses(data)
+        const def = data.find((a) => a.is_default) ?? data[0]
+        if (def) {
+          setAddressMode(def.id)
+          setValue('delivery_address', def.address)
+          setValue('delivery_address_id', def.id)
+        } else {
+          setAddressMode(CUSTOM_ADDRESS_VALUE)
+          setValue('delivery_address_id', '')
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setAddresses([])
+          setAddressMode(CUSTOM_ADDRESS_VALUE)
+        }
+      })
+    return () => {
+      cancelled = true
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedContact])
+
+  function handleAddressChoice(value: string) {
+    setAddressMode(value)
+    if (value === CUSTOM_ADDRESS_VALUE || value === '') {
+      setValue('delivery_address_id', '')
+      setValue('delivery_address', '')
+      return
+    }
+    const picked = addresses.find((a) => a.id === value)
+    if (picked) {
+      setValue('delivery_address_id', picked.id)
+      setValue('delivery_address', picked.address)
+    }
+  }
 
   useEffect(() => {
     if (!search || selectedContact) {
@@ -138,7 +191,11 @@ function NewOrderForm() {
   async function onSubmit(values: FormData) {
     setSubmitError(null)
     try {
-      const { data } = await api.post<Order>('/orders/', values)
+      const payload = {
+        ...values,
+        delivery_address_id: values.delivery_address_id || undefined,
+      }
+      const { data } = await api.post<Order>('/orders/', payload)
       router.push(`/contacts/${data.contact_id}`)
     } catch (e: unknown) {
       if (axios.isAxiosError(e)) {
@@ -330,11 +387,41 @@ function NewOrderForm() {
           </Field>
 
           <Field label="Endereço de entrega" htmlFor="delivery_address">
-            <Input
-              id="delivery_address"
-              placeholder="Rua, número, bairro — cidade/UF"
-              {...register('delivery_address')}
-            />
+            {addresses.length > 0 ? (
+              <div className="flex flex-col gap-2">
+                <Select
+                  value={addressMode}
+                  onChange={(e) => handleAddressChoice(e.target.value)}
+                  options={[
+                    ...addresses.map((a) => ({
+                      value: a.id,
+                      label: formatAddressOption(a),
+                    })),
+                    { value: CUSTOM_ADDRESS_VALUE, label: 'Outro endereço…' },
+                  ]}
+                />
+                {addressMode === CUSTOM_ADDRESS_VALUE ? (
+                  <Input
+                    id="delivery_address"
+                    placeholder="Rua, número, bairro — cidade/UF"
+                    {...register('delivery_address')}
+                  />
+                ) : (
+                  <input type="hidden" {...register('delivery_address')} />
+                )}
+              </div>
+            ) : (
+              <Input
+                id="delivery_address"
+                placeholder={
+                  selectedContact
+                    ? 'Rua, número, bairro — cidade/UF'
+                    : 'Selecione um cliente primeiro'
+                }
+                {...register('delivery_address')}
+              />
+            )}
+            <input type="hidden" {...register('delivery_address_id')} />
           </Field>
 
           <Field label="Observações" htmlFor="notes">
@@ -412,6 +499,14 @@ function Field({
       ) : null}
     </div>
   )
+}
+
+function formatAddressOption(a: ContactAddress): string {
+  const prefix = a.label ? `${a.label} — ` : ''
+  const star = a.is_default ? '★ ' : ''
+  const trimmed =
+    a.address.length > 60 ? `${a.address.slice(0, 57)}…` : a.address
+  return `${star}${prefix}${trimmed}`
 }
 
 function FormSkeleton() {

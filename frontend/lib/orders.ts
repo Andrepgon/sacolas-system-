@@ -2,7 +2,7 @@ import type { OrderStatus } from '@/components/ds'
 
 export const STATUS_LABELS: Record<OrderStatus, string> = {
   quote: 'Orçamento',
-  confirmed: 'Confirmado',
+  signal_paid: 'Sinal pago',
   vector_pending: 'Aguardando vetor',
   factory_pending: 'Na fábrica',
   printing: 'Em impressão',
@@ -14,7 +14,7 @@ export const STATUS_LABELS: Record<OrderStatus, string> = {
 
 export const STATUS_ORDER: OrderStatus[] = [
   'quote',
-  'confirmed',
+  'signal_paid',
   'vector_pending',
   'factory_pending',
   'printing',
@@ -25,8 +25,7 @@ export const STATUS_ORDER: OrderStatus[] = [
 ]
 
 export const BOARD_STATUS_ORDER: OrderStatus[] = [
-  'quote',
-  'confirmed',
+  'signal_paid',
   'vector_pending',
   'factory_pending',
   'printing',

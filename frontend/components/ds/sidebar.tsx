@@ -1,5 +1,13 @@
 import * as React from 'react'
-import { Home, Users, Package, Trophy, Plus, type LucideIcon } from 'lucide-react'
+import {
+  Home,
+  Users,
+  Package,
+  Trophy,
+  Plus,
+  Megaphone,
+  type LucideIcon,
+} from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 export interface NavItem {
@@ -8,7 +16,13 @@ export interface NavItem {
   icon: IconName
 }
 
-export type IconName = 'home' | 'users' | 'package' | 'trophy' | 'plus'
+export type IconName =
+  | 'home'
+  | 'users'
+  | 'package'
+  | 'trophy'
+  | 'plus'
+  | 'megaphone'
 
 const iconMap: Record<IconName, LucideIcon> = {
   home: Home,
@@ -16,6 +30,7 @@ const iconMap: Record<IconName, LucideIcon> = {
   package: Package,
   trophy: Trophy,
   plus: Plus,
+  megaphone: Megaphone,
 }
 
 export interface SidebarProps extends React.HTMLAttributes<HTMLElement> {

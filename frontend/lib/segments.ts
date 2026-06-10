@@ -1,0 +1,28 @@
+export const SEGMENTS = [
+  'Lanchonete',
+  'Restaurante',
+  'Cafeteria',
+  'Padaria',
+  'Confeitaria',
+  'Açaí e sorveteria',
+  'Moda feminina',
+  'Moda masculina',
+  'Moda infantil',
+  'Moda',
+  'Calçados',
+  'Lingerie e praia',
+  'Acessórios e bijuteria',
+  'Joalheria',
+  'Cosméticos e perfumaria',
+  'Salão e estética',
+  'Farmácia e saúde',
+  'Ótica',
+  'Pet shop',
+  'Papelaria e livraria',
+  'Eletrônicos e celular',
+  'Presentes e decoração',
+  'Floricultura',
+  'Outro',
+] as const
+
+export type Segment = (typeof SEGMENTS)[number]

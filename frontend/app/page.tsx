@@ -9,8 +9,13 @@ import { AttentionItem, Card, KpiCard } from '@/components/ds'
 
 type DashboardSummary = {
   receita_mes: number | string
+  receita_de_pagos: number | string
+  receita_de_sinais: number | string
+  pedidos_em_aberto: number
+  saldo_a_receber: number | string
   pedidos_mes: number
   ticket_medio: number | string
+  renda_media_diaria: number | string
   receita_mes_anterior: number | string
   delta_receita_pct: number | string | null
   total_customers: number
@@ -133,9 +138,11 @@ export default function DashboardPage() {
         </div>
       ) : null}
 
-      <section className="mb-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <section className="mb-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {loading || !summary ? (
           <>
+            <KpiSkeleton />
+            <KpiSkeleton />
             <KpiSkeleton />
             <KpiSkeleton />
             <KpiSkeleton />
@@ -148,12 +155,30 @@ export default function DashboardPage() {
               value={formatBRL(toNum(summary.receita_mes))}
               delta={deltaText ?? undefined}
               deltaDir={deltaDir}
-              sub="vs. mês anterior"
+              sub={
+                <>
+                  <div>
+                    Pagos {formatBRL(toNum(summary.receita_de_pagos))} · Sinais{' '}
+                    {formatBRL(toNum(summary.receita_de_sinais))}
+                  </div>
+                  <div>vs. mês anterior</div>
+                </>
+              }
+            />
+            <KpiCard
+              label="Renda média diária"
+              value={formatBRL(toNum(summary.renda_media_diaria))}
+              sub="receita do mês ÷ dias decorridos"
             />
             <KpiCard
               label="Pedidos do mês"
               value={summary.pedidos_mes}
               sub={`Ticket médio ${formatBRL(toNum(summary.ticket_medio))}`}
+            />
+            <KpiCard
+              label="Pedidos em aberto"
+              value={summary.pedidos_em_aberto}
+              sub={`${formatBRL(toNum(summary.saldo_a_receber))} a receber`}
             />
             <KpiCard
               label="Clientes ativos"

@@ -77,16 +77,23 @@ async def stats_gerais():
     customers = sb.table("contacts").select("id", count="exact").eq("status", "customer").execute()
     leads = sb.table("contacts").select("id", count="exact").eq("status", "lead").execute()
 
-    # Pedidos do mês atual
+    # Pedidos pagos do mês atual (mesma semântica de v_dashboard_summary):
+    # receita = SUM(total) de pedidos com status='paid' e paid_at no mês.
     from datetime import date
     primeiro_dia_mes = date.today().replace(day=1).isoformat()
-    pedidos_mes = sb.table("orders").select("total").gte("created_at", primeiro_dia_mes).execute()
+    pedidos_pagos = (
+        sb.table("orders")
+        .select("total")
+        .eq("status", "paid")
+        .gte("paid_at", primeiro_dia_mes)
+        .execute()
+    )
 
-    receita_mes = sum(float(o["total"]) for o in pedidos_mes.data)
+    receita_mes = sum(float(o["total"]) for o in pedidos_pagos.data)
 
     return {
         "total_customers": customers.count,
         "total_leads": leads.count,
-        "pedidos_mes": len(pedidos_mes.data),
+        "pedidos_mes": len(pedidos_pagos.data),
         "receita_mes": receita_mes,
     }
